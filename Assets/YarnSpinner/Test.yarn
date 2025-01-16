@@ -1,0 +1,30 @@
+﻿title: Test
+---
+
+<<if PlayerMetNPC("Box")>>
+    Box: heb jij de gele box?
+<<else>>
+    Box: goeden dag meneer ik ben een Box?
+    Box: als je toch hier ben kan je even die gele box voor me pakken?
+<<endif>>
+
+
+    <<if PlayerHasItem("Yellow")>>
+-> jij: ja ik heb het hier
+    <<jump jaAntwoord>>
+-> jij: nee nog niet
+    <<jump neeAntwoord>>
+<<endif>>
+-> jij: nee nog niet
+    <<jump neeAntwoord>>
+===
+
+title: jaAntwoord
+---
+Box: dat is mooi geef het maar hier.
+===
+
+title: neeAntwoord
+---
+Box: kan je het even pakken dan.
+===
