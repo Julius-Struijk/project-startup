@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class WordsAdding : MonoBehaviour
 {
-    public static event Action<int> AddWord;
+    
     [SerializeField] List<GameObject> words;
 
     // Start is called before the first frame update
     void Start()
     {
-        AddWord += EnableWord;
+        PlayerInteraction.AddWord += EnableWord;
     }
 
     // Update is called once per frame
@@ -28,6 +27,6 @@ public class WordsAdding : MonoBehaviour
 
     private void OnDestroy()
     {
-        AddWord -= EnableWord;
+        PlayerInteraction.AddWord -= EnableWord;
     }
 }
