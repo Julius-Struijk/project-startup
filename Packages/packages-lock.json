@@ -77,6 +77,7 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+<<<<<<< Updated upstream
     "com.unity.performance.profile-analyzer": {
       "version": "1.2.3",
       "depth": 1,
@@ -84,6 +85,8 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+=======
+>>>>>>> Stashed changes
     "com.unity.render-pipelines.core": {
       "version": "14.0.11",
       "depth": 1,
@@ -95,6 +98,7 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       }
     },
+<<<<<<< Updated upstream
     "com.unity.render-pipelines.high-definition": {
       "version": "14.0.11",
       "depth": 0,
@@ -123,6 +127,11 @@
     "com.unity.searcher": {
       "version": "4.9.2",
       "depth": 2,
+=======
+    "com.unity.searcher": {
+      "version": "4.9.2",
+      "depth": 1,
+>>>>>>> Stashed changes
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -136,7 +145,11 @@
     },
     "com.unity.shadergraph": {
       "version": "14.0.11",
+<<<<<<< Updated upstream
       "depth": 1,
+=======
+      "depth": 0,
+>>>>>>> Stashed changes
       "source": "builtin",
       "dependencies": {
         "com.unity.render-pipelines.core": "14.0.11",
