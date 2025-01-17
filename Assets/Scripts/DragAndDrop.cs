@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DragAndDrop : MonoBehaviour
 {
     Vector3 offset;
     RectTransform rt;
-    [SerializeField] List<GameObject> inputBoxes;
+    public static event Action<GameObject, GameObject> OnInputBoxFilled;
+
 // Start is called before the first frame update
 void Start()
     {
+        InputBoxAvailability.OnDragEnd += EndDrag;
         rt = gameObject.GetComponent<RectTransform>();
     }
 
@@ -33,7 +36,7 @@ void Start()
         rt.position = Input.mousePosition + offset;
     }
 
-    public void EndDrag()
+    void EndDrag(List<GameObject> inputBoxes)
     {
         foreach(GameObject inputBox in inputBoxes)
         {
@@ -42,7 +45,7 @@ void Start()
             rt.position -= offset;
 
             //Debug.LogFormat("Checking word at position {0} overlaps with input box at position {1}.", rt.position, inputBoxRt.position);
-            if (inputBoxRt != null && RectTransformExpansion.Overlaps(rt, inputBoxRt))
+            if (inputBoxRt != null && inputBox.CompareTag("InputBox") && RectTransformExpansion.Overlaps(rt, inputBoxRt))
             {
                 rt.position = inputBoxRt.position;
                 //Debug.LogFormat("Word overlaps with input box at position {0}. New position: {1}",inputBoxRt.position, rt.position);
@@ -53,5 +56,10 @@ void Start()
                 rt.position += offset;
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        InputBoxAvailability.OnDragEnd -= EndDrag;
     }
 }
