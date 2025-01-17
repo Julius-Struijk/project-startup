@@ -2,18 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class DragAndDrop : MonoBehaviour
 {
     Vector3 offset;
     RectTransform rt;
-    public static event Action<GameObject, GameObject> OnInputBoxFilled;
+    Image wordBoxImage;
+    GameObject filledInputBox;
+    bool matchedWithPair = false;
 
-// Start is called before the first frame update
-void Start()
+    public static event Action<GameObject, GameObject> OnInputBoxFilled;
+    public static event Action<GameObject, GameObject> OnInputBoxExited;
+
+    // Start is called before the first frame update
+    void Start()
     {
         InputBoxAvailability.OnDragEnd += EndDrag;
+        InputBoxAvailability.OnCorrectSolutions += PairMatched;
         rt = gameObject.GetComponent<RectTransform>();
+        wordBoxImage = gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -24,36 +32,71 @@ void Start()
 
     public void BeginDrag()
     {
-        // Calculating offset so the box is grabbed properly.
-        offset = rt.position - Input.mousePosition;
-        //Debug.LogFormat("Offset is: {0}", offset);
+        // Stops all dragging functions once a pair has been found.
+        if(!matchedWithPair)
+        {
+            // Marking a box as available once the word leaves it.
+            if (filledInputBox != null)
+            {
+                OnInputBoxExited(gameObject, filledInputBox);
+                // Clearing input box so this only gets called when leaving an input box.
+                filledInputBox = null;
+            }
+
+            // Calculating offset so the box is grabbed properly.
+            offset = rt.position - Input.mousePosition;
+
+            //Debug.LogFormat("Offset is: {0}", offset);
+        }
     }
 
     public void MouseDrag()
     {
-
-        //Debug.LogFormat("Object position: {0} Mouse position: {1}", rt.position, Input.mousePosition);
-        rt.position = Input.mousePosition + offset;
+        if(!matchedWithPair)
+        {
+            //Debug.LogFormat("Object position: {0} Mouse position: {1}", rt.position, Input.mousePosition);
+            rt.position = Input.mousePosition + offset;
+        }
     }
 
     void EndDrag(List<GameObject> inputBoxes)
     {
-        foreach(GameObject inputBox in inputBoxes)
+        if(!matchedWithPair)
         {
-            RectTransform inputBoxRt = inputBox.GetComponent<RectTransform>();
-            // Removing offset so the position of the box can be checked properly.
-            rt.position -= offset;
+            foreach (GameObject inputBox in inputBoxes)
+            {
+                RectTransform inputBoxRt = inputBox.GetComponent<RectTransform>();
+                // Removing offset so the position of the box can be checked properly.
+                rt.position -= offset;
 
-            //Debug.LogFormat("Checking word at position {0} overlaps with input box at position {1}.", rt.position, inputBoxRt.position);
-            if (inputBoxRt != null && inputBox.CompareTag("InputBox") && RectTransformExpansion.Overlaps(rt, inputBoxRt))
-            {
-                rt.position = inputBoxRt.position;
-                //Debug.LogFormat("Word overlaps with input box at position {0}. New position: {1}",inputBoxRt.position, rt.position);
-                break;
+                //Debug.LogFormat("Checking word at position {0} overlaps with input box at position {1}.", rt.position, inputBoxRt.position);
+                if (inputBoxRt != null && inputBox.CompareTag("InputBox") && RectTransformExpansion.Overlaps(rt, inputBoxRt))
+                {
+                    rt.position = inputBoxRt.position;
+                    OnInputBoxFilled(gameObject, inputBox);
+                    //Debug.LogFormat("Word overlaps with input box at position {0}. New position: {1}",inputBoxRt.position, rt.position);
+
+                    // Saving the input box for when the word leaves it.
+                    filledInputBox = inputBox;
+                    break;
+                }
+                else
+                {
+                    rt.position += offset;
+                }
             }
-            else
+        }
+    }
+
+    public void PairMatched(List<GameObject> correctlyPairedWords)
+    {
+        foreach(GameObject word in correctlyPairedWords)
+        {
+            // When pairs are considered solved the word checks if it is in the solved list.
+            if (word == gameObject)
             {
-                rt.position += offset;
+                matchedWithPair = true;
+                if (wordBoxImage != null) { wordBoxImage.color = Color.green; }
             }
         }
     }
@@ -61,5 +104,6 @@ void Start()
     private void OnDestroy()
     {
         InputBoxAvailability.OnDragEnd -= EndDrag;
+        InputBoxAvailability.OnCorrectSolutions -= PairMatched;
     }
 }
