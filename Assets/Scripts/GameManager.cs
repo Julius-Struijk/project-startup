@@ -41,8 +41,6 @@ public class GameManager : MonoBehaviour
             if (hitinfo.collider.gameObject.tag == "NPC" && Input.GetMouseButtonUp(0))
             {
                 hitinfo.collider.GetComponentInParent<NPCInteraction>().StartInteraction();
-
-               // _objects.Add(hitinfo.collider.gameObject.name, hitinfo.collider.gameObject);
             }
 
             if (hitinfo.collider.gameObject.tag == "Item" && Input.GetMouseButtonUp(0))
