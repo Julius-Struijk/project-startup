@@ -1,14 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
-using UnityEditor;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using Yarn;
 using Yarn.Unity;
-using static UnityEditor.Progress;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,9 +13,10 @@ public class GameManager : MonoBehaviour
     public GameObject _player;
     public DialogueRunner _dialogueRunner;
     public Camera _camera;
+
     public Dictionary<string, GameObject> _objects = new Dictionary<string, GameObject>();
 
-    public bool on;
+  
     // public bool inDialogue = false;
     // Start is called before the first frame update
     void Start()
@@ -29,37 +24,30 @@ public class GameManager : MonoBehaviour
         _dialogueRunner.AddFunction<string, bool>("PlayerMetNPC", PlayerMetNPC);
         _dialogueRunner.AddFunction<string, bool>("PlayerHasItem", PlayerHasItem);
         _dialogueRunner.AddFunction<string, bool>("PlayerGifItem", PlayerGifItem);
+        StopInteraction();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        on = _dialogueRunner.Dialogue.IsActive;
-
-        if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && !_dialogueRunner.Dialogue.IsActive)
+        if (_dialogueRunner.Dialogue.IsActive)
         {
-            if (hitinfo.collider.gameObject.tag == "NPC" && Input.GetMouseButtonUp(0))
-            {
-                hitinfo.collider.GetComponentInParent<NPCInteraction>().StartInteraction();
-            }
-
-            if (hitinfo.collider.gameObject.tag == "Item" && Input.GetMouseButtonUp(0))
-            {
-                _objects.Add(hitinfo.collider.gameObject.name, hitinfo.collider.gameObject);
-
-                Destroy(hitinfo.collider.gameObject);
-            }
+            _dialogueRunner.GetComponentInChildren<Image>().enabled = true;
+        }
+        else
+        {
+            _dialogueRunner.GetComponentInChildren<Image>().enabled = false;
         }
     }
 
-    public GameObject GetPlayer()
+    public void StartInteraction(string name, Sprite image)
     {
-        return _player;
+        _dialogueRunner.StartDialogue(name);
+        _dialogueRunner.GetComponentInChildren<Image>().sprite = image;
     }
-    
-    public DialogueRunner GetDialogueRunner()
+
+    public void StopInteraction()
     {
-        return _dialogueRunner;
+        _dialogueRunner.Stop();
     }
 
     private bool PlayerMetNPC(string NPCName)
@@ -70,10 +58,10 @@ public class GameManager : MonoBehaviour
         {
             return true;
         }
-        else 
+        else
         {
             GameObject gameObject = GameObject.FindGameObjectsWithTag("NPC").Where(NPC => NPC.name == NPCName).First();
-            _objects.Add(gameObject.name, gameObject);       
+            _objects.Add(gameObject.name, gameObject);
             return false;
         }
     }
