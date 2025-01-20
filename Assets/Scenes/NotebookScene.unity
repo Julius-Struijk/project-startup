@@ -127,7 +127,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2813984363539076015, guid: e1c8016e04d814e47afeedee62366a75, type: 3}
   m_PrefabInstance: {fileID: 1652668852}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &17090934
+--- !u!114 &17090942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 17090926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b45c8664e4b95343b906b1a1cbbb9ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 1be3523427fa025459bc94deba0ce62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &261127468 stripped
@@ -1395,7 +1395,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2813984363539076015, guid: e1c8016e04d814e47afeedee62366a75, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 17090934}
+      addedObject: {fileID: 17090942}
   m_SourcePrefab: {fileID: 100100000, guid: e1c8016e04d814e47afeedee62366a75, type: 3}
 --- !u!4 &1652668853 stripped
 Transform:
@@ -1579,6 +1579,30 @@ PrefabInstance:
     - target: {fileID: 2167484342727132596, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
       propertyPath: m_Name
       value: Notebook
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151952521292722857, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151952521292722857, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151952521292722857, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151952521292722857, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151952521292722857, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -17.188232
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151952521292722857, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -62.429535
       objectReference: {fileID: 0}
     - target: {fileID: 6826451171330236411, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
       propertyPath: inputBoxes.Array.data[1]
