@@ -42,11 +42,6 @@ public class DragAndDrop : MonoBehaviour
                 // Clearing input box so this only gets called when leaving an input box.
                 filledInputBox = null;
             }
-
-            // Calculating offset so the box is grabbed properly.
-            offset = rt.position - Input.mousePosition;
-
-            //Debug.LogFormat("Offset is: {0}", offset);
         }
     }
 
@@ -54,8 +49,8 @@ public class DragAndDrop : MonoBehaviour
     {
         if(!matchedWithPair)
         {
-            //Debug.LogFormat("Object position: {0} Mouse position: {1}", rt.position, Input.mousePosition);
-            rt.position = Input.mousePosition + offset;
+            Debug.LogFormat("Object position: {0} Mouse position: {1}", rt.position, Input.mousePosition);
+            rt.position = Input.mousePosition;
         }
     }
 
@@ -66,8 +61,6 @@ public class DragAndDrop : MonoBehaviour
             foreach (GameObject inputBox in inputBoxes)
             {
                 RectTransform inputBoxRt = inputBox.GetComponent<RectTransform>();
-                // Removing offset so the position of the box can be checked properly.
-                rt.position -= offset;
 
                 //Debug.LogFormat("Checking word at position {0} overlaps with input box at position {1}.", rt.position, inputBoxRt.position);
                 if (inputBoxRt != null && inputBox.CompareTag("InputBox") && RectTransformExpansion.Overlaps(rt, inputBoxRt))
@@ -79,10 +72,6 @@ public class DragAndDrop : MonoBehaviour
                     // Saving the input box for when the word leaves it.
                     filledInputBox = inputBox;
                     break;
-                }
-                else
-                {
-                    rt.position += offset;
                 }
             }
         }
