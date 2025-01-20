@@ -18,7 +18,7 @@ public class DragAndDrop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InputBoxAvailability.OnDragEnd += EndDrag;
+        InputBoxAvailability.OnListShare += EndDrag;
         InputBoxAvailability.OnCorrectSolutions += PairMatched;
         rt = gameObject.GetComponent<RectTransform>();
         wordBoxImage = gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();
@@ -42,11 +42,6 @@ public class DragAndDrop : MonoBehaviour
                 // Clearing input box so this only gets called when leaving an input box.
                 filledInputBox = null;
             }
-
-            // Calculating offset so the box is grabbed properly.
-            offset = rt.position - Input.mousePosition;
-
-            //Debug.LogFormat("Offset is: {0}", offset);
         }
     }
 
@@ -55,34 +50,30 @@ public class DragAndDrop : MonoBehaviour
         if(!matchedWithPair)
         {
             //Debug.LogFormat("Object position: {0} Mouse position: {1}", rt.position, Input.mousePosition);
-            rt.position = Input.mousePosition + offset;
+            rt.position = Input.mousePosition;
         }
     }
 
     void EndDrag(List<GameObject> inputBoxes)
     {
-        if(!matchedWithPair)
+        // Checks if the page the word is a child of is still active. This prevents the word from affecting lists on other pages.
+        if(!matchedWithPair && gameObject.transform.parent.gameObject.activeSelf)
         {
             foreach (GameObject inputBox in inputBoxes)
             {
                 RectTransform inputBoxRt = inputBox.GetComponent<RectTransform>();
-                // Removing offset so the position of the box can be checked properly.
-                rt.position -= offset;
 
                 //Debug.LogFormat("Checking word at position {0} overlaps with input box at position {1}.", rt.position, inputBoxRt.position);
                 if (inputBoxRt != null && inputBox.CompareTag("InputBox") && RectTransformExpansion.Overlaps(rt, inputBoxRt))
                 {
                     rt.position = inputBoxRt.position;
+
+                    //Debug.LogFormat("Word overlaps with input box at position {0}. New position: {1}. Current word: {2}", inputBoxRt.position, rt.position, gameObject.name);
                     OnInputBoxFilled(gameObject, inputBox);
-                    //Debug.LogFormat("Word overlaps with input box at position {0}. New position: {1}",inputBoxRt.position, rt.position);
 
                     // Saving the input box for when the word leaves it.
                     filledInputBox = inputBox;
                     break;
-                }
-                else
-                {
-                    rt.position += offset;
                 }
             }
         }
@@ -103,7 +94,7 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnDestroy()
     {
-        InputBoxAvailability.OnDragEnd -= EndDrag;
+        InputBoxAvailability.OnListShare -= EndDrag;
         InputBoxAvailability.OnCorrectSolutions -= PairMatched;
     }
 }

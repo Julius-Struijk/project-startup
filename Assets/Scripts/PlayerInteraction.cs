@@ -5,7 +5,6 @@ using Yarn.Unity;
 
 public class PlayerInteraction : MonoBehaviour
 {
-	public static event Action<int> AddWord;
     private GameManager _gameManager;
     private DialogueRunner _dialogueRunner;
     public Light light;

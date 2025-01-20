@@ -10,7 +10,7 @@ public class WordsAdding : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerInteraction.AddWord += EnableWord;
+        WordDiscovery.AddWord += EnableWord;
     }
 
     // Update is called once per frame
@@ -27,6 +27,6 @@ public class WordsAdding : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerInteraction.AddWord -= EnableWord;
+        WordDiscovery.AddWord -= EnableWord;
     }
 }
