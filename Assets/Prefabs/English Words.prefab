@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39842f3dd323d4845b9d7d1ec9c6a8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordBox: {fileID: 5544936241498758988}
 --- !u!114 &6224197239125625277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,8 +112,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6826451171330236411, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
-          m_TargetAssemblyTypeName: InputBoxAvailability, Assembly-CSharp
+        - m_Target: {fileID: 7940845811806491853, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
+          m_TargetAssemblyTypeName: EndDrag, Assembly-CSharp
           m_MethodName: DragEnd
           m_Mode: 1
           m_Arguments:

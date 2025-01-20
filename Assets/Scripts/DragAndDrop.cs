@@ -18,7 +18,7 @@ public class DragAndDrop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InputBoxAvailability.OnDragEnd += EndDrag;
+        InputBoxAvailability.OnListShare += EndDrag;
         InputBoxAvailability.OnCorrectSolutions += PairMatched;
         rt = gameObject.GetComponent<RectTransform>();
         wordBoxImage = gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();
@@ -49,14 +49,15 @@ public class DragAndDrop : MonoBehaviour
     {
         if(!matchedWithPair)
         {
-            Debug.LogFormat("Object position: {0} Mouse position: {1}", rt.position, Input.mousePosition);
+            //Debug.LogFormat("Object position: {0} Mouse position: {1}", rt.position, Input.mousePosition);
             rt.position = Input.mousePosition;
         }
     }
 
     void EndDrag(List<GameObject> inputBoxes)
     {
-        if(!matchedWithPair)
+        // Checks if the page the word is a child of is still active. This prevents the word from affecting lists on other pages.
+        if(!matchedWithPair && gameObject.transform.parent.gameObject.activeSelf)
         {
             foreach (GameObject inputBox in inputBoxes)
             {
@@ -66,8 +67,9 @@ public class DragAndDrop : MonoBehaviour
                 if (inputBoxRt != null && inputBox.CompareTag("InputBox") && RectTransformExpansion.Overlaps(rt, inputBoxRt))
                 {
                     rt.position = inputBoxRt.position;
+
+                    //Debug.LogFormat("Word overlaps with input box at position {0}. New position: {1}. Current word: {2}", inputBoxRt.position, rt.position, gameObject.name);
                     OnInputBoxFilled(gameObject, inputBox);
-                    //Debug.LogFormat("Word overlaps with input box at position {0}. New position: {1}",inputBoxRt.position, rt.position);
 
                     // Saving the input box for when the word leaves it.
                     filledInputBox = inputBox;
@@ -92,7 +94,7 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnDestroy()
     {
-        InputBoxAvailability.OnDragEnd -= EndDrag;
+        InputBoxAvailability.OnListShare -= EndDrag;
         InputBoxAvailability.OnCorrectSolutions -= PairMatched;
     }
 }
