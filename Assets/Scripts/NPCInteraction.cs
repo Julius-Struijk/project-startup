@@ -14,6 +14,7 @@ public class NPCInteraction : MonoBehaviour
 
     public void StartInteraction()
     {
+        Debug.Log("StartInteraction met " + name);
         _gameManager.StartInteraction(name, image.sprite);
     }
 }

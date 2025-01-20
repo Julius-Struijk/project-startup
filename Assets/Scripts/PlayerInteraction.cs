@@ -1,5 +1,6 @@
-
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 using Yarn.Unity;
 
 public class PlayerInteraction : MonoBehaviour
@@ -7,7 +8,9 @@ public class PlayerInteraction : MonoBehaviour
 	public static event Action<int> AddWord;
     private GameManager _gameManager;
     private DialogueRunner _dialogueRunner;
+    public Light light;
     public Camera _camera;
+
     void Start()
     {
         _gameManager = GameObject.FindAnyObjectByType<GameManager>();
@@ -16,34 +19,16 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-    	if(Input.GetKeyDown(KeyCode.E) && AddWord != null)
+        if (_dialogueRunner.Dialogue.IsActive && Input.GetKeyUp(KeyCode.Escape))
         {
-            AddWord(0);
-		}
-        
-        if (_dialogueRunner.Dialogue.IsActive)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            gameObject.GetComponentInChildren<PlayerMovement>().enabled = false;
-            gameObject.GetComponentInChildren<PlayerLook>().enabled = false;
-
-            if (Input.GetKeyUp(KeyCode.Escape))
-            {
-                _gameManager.StopInteraction();
-            }
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            gameObject.GetComponentInChildren<PlayerMovement>().enabled = true;
-            gameObject.GetComponentInChildren<PlayerLook>().enabled = true;
+            _gameManager.StopInteraction();
         }
 
         if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && !_dialogueRunner.Dialogue.IsActive)
         {
             if (hitinfo.collider.gameObject.tag == "NPC" && Input.GetMouseButtonUp(0))
             {
-      
+
                 hitinfo.collider.GetComponentInParent<NPCInteraction>().StartInteraction();
             }
 
@@ -54,5 +39,25 @@ public class PlayerInteraction : MonoBehaviour
                 Destroy(hitinfo.collider.gameObject);
             }
         }
+    }
+
+    public void OnCompleteDialogue()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+
+        gameObject.GetComponentInChildren<PlayerMovement>().SetEnabledMove(true);
+        gameObject.GetComponentInChildren<PlayerLook>().SetEnabledLook(true);
+
+        _dialogueRunner.GetComponentInChildren<Image>().enabled = false;
+        light.intensity = 130000;
+    }
+
+    public void OnStartDialogue()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        gameObject.GetComponentInChildren<PlayerMovement>().SetEnabledMove(false);
+        gameObject.GetComponentInChildren<PlayerLook>().SetEnabledLook(false);
+        _dialogueRunner.GetComponentInChildren<Image>().enabled = true;
+        light.intensity = 50000;
     }
 }

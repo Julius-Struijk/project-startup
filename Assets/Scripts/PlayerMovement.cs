@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
 
+    private float backUpMoveSpeed;
     [SerializeField] float moveSpeed;
     [SerializeField] float groundDrag;
     float horizontalInput;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        backUpMoveSpeed = moveSpeed;
         rb = GetComponent<Rigidbody>();
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -47,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
 
-        if(footstepsSound != null)
+        if (footstepsSound != null)
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
@@ -68,8 +70,12 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
-
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
 
+    public void SetEnabledMove(bool enable)
+    {
+        if (enable) moveSpeed = backUpMoveSpeed;        
+        else moveSpeed = 0;        
+    }
 }

@@ -16,27 +16,12 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<string, GameObject> _objects = new Dictionary<string, GameObject>();
 
-  
-    // public bool inDialogue = false;
-    // Start is called before the first frame update
     void Start()
     {
         _dialogueRunner.AddFunction<string, bool>("PlayerMetNPC", PlayerMetNPC);
         _dialogueRunner.AddFunction<string, bool>("PlayerHasItem", PlayerHasItem);
         _dialogueRunner.AddFunction<string, bool>("PlayerGifItem", PlayerGifItem);
         StopInteraction();
-    }
-
-    public void Update()
-    {
-        if (_dialogueRunner.Dialogue.IsActive)
-        {
-            _dialogueRunner.GetComponentInChildren<Image>().enabled = true;
-        }
-        else
-        {
-            _dialogueRunner.GetComponentInChildren<Image>().enabled = false;
-        }
     }
 
     public void StartInteraction(string name, Sprite image)
@@ -65,6 +50,7 @@ public class GameManager : MonoBehaviour
             return false;
         }
     }
+
     private bool PlayerHasItem(string item)
     {
         return (_objects.ContainsKey(item));
@@ -75,5 +61,4 @@ public class GameManager : MonoBehaviour
         _objects.Remove(item);
         return true;
     }
-
 }
