@@ -4,6 +4,7 @@ using Yarn.Unity;
 
 public class PlayerInteraction : MonoBehaviour
 {
+	public static event Action<int> AddWord;
     private GameManager _gameManager;
     private DialogueRunner _dialogueRunner;
     public Camera _camera;
@@ -15,6 +16,11 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
+    	if(Input.GetKeyDown(KeyCode.E) && AddWord != null)
+        {
+            AddWord(0);
+		}
+        
         if (_dialogueRunner.Dialogue.IsActive)
         {
             Cursor.lockState = CursorLockMode.None;
