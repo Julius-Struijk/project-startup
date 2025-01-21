@@ -62,9 +62,10 @@ public class DragAndDrop : MonoBehaviour
             foreach (GameObject inputBox in inputBoxes)
             {
                 RectTransform inputBoxRt = inputBox.GetComponent<RectTransform>();
-
                 //Debug.LogFormat("Checking word at position {0} overlaps with input box at position {1}.", rt.position, inputBoxRt.position);
-                if (inputBoxRt != null && inputBox.CompareTag("InputBox") && RectTransformExpansion.Overlaps(rt, inputBoxRt))
+
+                // Checks if the word overlaps with the input box and only if it's visible.
+                if (inputBoxRt != null && inputBox.CompareTag("InputBox") && RectTransformExpansion.Overlaps(rt, inputBoxRt) && inputBox.transform.parent.gameObject.activeSelf)
                 {
                     rt.position = inputBoxRt.position;
 

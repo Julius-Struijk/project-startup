@@ -9,6 +9,7 @@ public class PlayerInteraction : MonoBehaviour
     private DialogueRunner _dialogueRunner;
     public Light light;
     public Camera _camera;
+    GameObject currentNPC;
 
     void Start()
     {
@@ -18,24 +19,39 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (_dialogueRunner.Dialogue.IsActive && Input.GetKeyUp(KeyCode.Escape))
+        if(_dialogueRunner != null)
         {
-            _gameManager.StopInteraction();
-        }
-
-        if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && !_dialogueRunner.Dialogue.IsActive)
-        {
-            if (hitinfo.collider.gameObject.tag == "NPC" && Input.GetMouseButtonUp(0))
+            if (_dialogueRunner.Dialogue.IsActive && Input.GetKeyUp(KeyCode.Escape))
             {
-
-                hitinfo.collider.GetComponentInParent<NPCInteraction>().StartInteraction();
+                _gameManager.StopInteraction();
+                if(currentNPC != null)
+                {
+                    // Adding the word attached to the NPC after the conversation is over, if it has one.
+                    WordDiscovery wordAdder = currentNPC.GetComponent<WordDiscovery>();
+                    if(wordAdder != null) { wordAdder.ShareWordIndex(); }
+                    currentNPC = null;
+                }
             }
 
-            if (hitinfo.collider.gameObject.tag == "Item" && Input.GetMouseButtonUp(0))
+            if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && !_dialogueRunner.Dialogue.IsActive)
             {
-                _gameManager._objects.Add(hitinfo.collider.gameObject.name, hitinfo.collider.gameObject);
+                if (hitinfo.collider.gameObject.tag == "NPC" && Input.GetMouseButtonUp(0))
+                {
+                    // Saving the NPC, so we can add it's word after the conversation is over.
+                    currentNPC = hitinfo.collider.gameObject;
+                    currentNPC.GetComponent<NPCInteraction>().StartInteraction();
+                }
 
-                Destroy(hitinfo.collider.gameObject);
+                else if (hitinfo.collider.gameObject.tag == "Item" && Input.GetMouseButtonUp(0))
+                {
+                    _gameManager._objects.Add(hitinfo.collider.gameObject.name, hitinfo.collider.gameObject);
+
+                    Destroy(hitinfo.collider.gameObject);
+                }
+                else if (hitinfo.collider.gameObject.tag == "WordObject" && Input.GetMouseButtonUp(0))
+                {
+                    hitinfo.collider.GetComponentInParent<WordDiscovery>().ShareWordIndex();
+                }
             }
         }
     }

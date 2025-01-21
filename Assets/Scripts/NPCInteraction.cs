@@ -4,12 +4,14 @@ using UnityEngine.UI;
 public class NPCInteraction : MonoBehaviour
 {
     private GameManager _gameManager;
+    private WordsAdding wordAdder;
     public Image image;
     public string name;    
  
     void Start()
     {
         _gameManager = GameObject.FindAnyObjectByType<GameManager>();
+        wordAdder = gameObject.GetComponent<WordsAdding>();
     }
 
     public void StartInteraction()

@@ -5,14 +5,12 @@ using System;
 
 public class WordDiscovery : MonoBehaviour
 {
+    [SerializeField] int wordIndex;
     public static event Action<int> AddWord;
 
-    // Update is called once per frame
-    void Update()
+    public void ShareWordIndex()
     {
-        if (Input.GetKeyDown(KeyCode.E) && AddWord != null)
-        {
-            AddWord(0);
-        }
+        // Shares the word index so the correct word can be added to the notebook.
+        if(AddWord != null) { AddWord(wordIndex); }
     }
 }
