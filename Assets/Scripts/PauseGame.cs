@@ -9,6 +9,7 @@ public class PauseGame : MonoBehaviour
     public GameObject otherUIToDisable;    
     public string mainMenuSceneName;
     [SerializeField] KeyCode pauseButton;
+    [SerializeField] bool enableOtherUI;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class PauseGame : MonoBehaviour
             pauseMenu.SetActive(false);
         }
 
-        if (otherUIToDisable != null)
+        if (otherUIToDisable != null && enableOtherUI)
         {
             otherUIToDisable.SetActive(true);
         }
@@ -70,7 +71,7 @@ public class PauseGame : MonoBehaviour
             pauseMenu.SetActive(false);
         }
 
-        if (otherUIToDisable != null)
+        if (otherUIToDisable != null && enableOtherUI)
         {
             otherUIToDisable.SetActive(true);
         }
