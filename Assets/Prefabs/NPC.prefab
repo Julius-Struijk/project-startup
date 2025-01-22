@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ed1d2c7f3bb4744ae155cf114255d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClip: {fileID: 0}
   image: {fileID: 5207895719583882724}
 --- !u!65 &5441200468600220526
 BoxCollider:

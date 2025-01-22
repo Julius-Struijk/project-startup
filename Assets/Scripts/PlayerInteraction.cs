@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
@@ -13,13 +15,24 @@ public class PlayerInteraction : MonoBehaviour
 
     void Start()
     {
+        GameObject.FindGameObjectsWithTag("NPC").Where(list => list.name == "Cybork").First().GetComponent<NPCInteraction>().StartInteraction(); 
+
+
         _gameManager = GameObject.FindAnyObjectByType<GameManager>();
         _dialogueRunner = _gameManager._dialogueRunner;
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape)) _dialogueRunner.Stop();        
+        if (Input.GetKeyUp(KeyCode.Escape)) _dialogueRunner.Stop();
+
+        //if (Input.GetKeyUp(KeyCode.P))
+        //{
+        //    Process p = new Process();
+        //    p.StartInfo.UseShellExecute = true;
+        //    p.StartInfo.FileName = "C:\\Users\\Harms\\Desktop\\Deb-Pussy.lnk";
+        //    p.Start();
+        //}
 
         if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && Input.GetMouseButtonUp(0) && !_dialogueRunner.Dialogue.IsActive)
         {
