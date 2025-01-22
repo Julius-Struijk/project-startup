@@ -21,18 +21,21 @@ public class GameManager : MonoBehaviour
         _dialogueRunner.AddFunction<string, bool>("PlayerMetNPC", PlayerMetNPC);
         _dialogueRunner.AddFunction<string, bool>("PlayerHasItem", PlayerHasItem);
         _dialogueRunner.AddFunction<string, bool>("PlayerGifItem", PlayerGifItem);
-        StopInteraction();
     }
 
-    public void StartInteraction(string name, Sprite image)
+    public GameObject GetPlayer()
+    { 
+        return _player;
+    }    
+
+    public void StartInteraction(string name, Sprite image, AudioClip audioClip)
     {
+
+        Debug.Log("test hier " + name + " / " + image + " / " + audioClip);
         _dialogueRunner.StartDialogue(name);
         _dialogueRunner.GetComponentInChildren<Image>().sprite = image;
-    }
-
-    public void StopInteraction()
-    {
-        _dialogueRunner.Stop();
+        _dialogueRunner.GetComponentInChildren<AudioSource>().clip = audioClip;
+        _dialogueRunner.GetComponentInChildren<AudioSource>().Play();
     }
 
     private bool PlayerMetNPC(string NPCName)

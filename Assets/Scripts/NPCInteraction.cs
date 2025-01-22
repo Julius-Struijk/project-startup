@@ -5,8 +5,8 @@ public class NPCInteraction : MonoBehaviour
 {
     private GameManager _gameManager;
     private WordsAdding wordAdder;
-    public Image image;
-    public string name;    
+    public AudioClip audioClip;
+    public Image image;   
  
     void Start()
     {
@@ -16,7 +16,6 @@ public class NPCInteraction : MonoBehaviour
 
     public void StartInteraction()
     {
-        Debug.Log("StartInteraction met " + name);
-        _gameManager.StartInteraction(name, image.sprite);
+        _gameManager.StartInteraction(this.name, image.sprite, audioClip);
     }
 }

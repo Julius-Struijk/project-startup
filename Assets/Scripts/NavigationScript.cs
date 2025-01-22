@@ -3,8 +3,13 @@ using UnityEngine;
 
 public class NavigationScript : MonoBehaviour
 {
-    public Transform _player;
+    private Transform _player;
     public NavMeshAgent agent;
+
+    void Start()
+    {
+        _player = GameObject.FindAnyObjectByType<GameManager>().GetPlayer().transform;
+    }
 
     void Update()
     {
