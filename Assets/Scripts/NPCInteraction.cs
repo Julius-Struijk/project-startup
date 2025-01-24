@@ -16,6 +16,6 @@ public class NPCInteraction : MonoBehaviour
 
     public void StartInteraction()
     {
-        _gameManager.StartInteraction(this.name, image.sprite, audioClip);
+        _gameManager.StartInteraction(image.sprite, audioClip, this.name);
     }
 }

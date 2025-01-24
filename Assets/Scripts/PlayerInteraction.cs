@@ -7,24 +7,22 @@ using Yarn.Unity;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private GameManager _gameManager;
-    private DialogueRunner _dialogueRunner;
-    public Light light;
+    private GameManager gameManager;
+    private DialogueRunner dialogueRunner;
+    public Light _light;
     public Camera _camera;
+    public GameObject _richard;
     GameObject currentNPC;
 
     void Start()
     {
-        GameObject.FindGameObjectsWithTag("NPC").Where(list => list.name == "Cybork").First().GetComponent<NPCInteraction>().StartInteraction(); 
-
-
-        _gameManager = GameObject.FindAnyObjectByType<GameManager>();
-        _dialogueRunner = _gameManager._dialogueRunner;
+        gameManager = GameObject.FindAnyObjectByType<GameManager>();
+        dialogueRunner = gameManager._dialogueRunner;
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape)) _dialogueRunner.Stop();
+        if (Input.GetKeyUp(KeyCode.Escape)) dialogueRunner.Stop();
 
         //if (Input.GetKeyUp(KeyCode.P))
         //{
@@ -34,7 +32,7 @@ public class PlayerInteraction : MonoBehaviour
         //    p.Start();
         //}
 
-        if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && Input.GetMouseButtonUp(0) && !_dialogueRunner.Dialogue.IsActive)
+        if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && Input.GetMouseButtonUp(0) && !dialogueRunner.Dialogue.IsActive)
         {
             if (hitinfo.collider.gameObject.tag == "NPC")
             {
@@ -44,7 +42,7 @@ public class PlayerInteraction : MonoBehaviour
             }
             else if (hitinfo.collider.gameObject.tag == "Item")
             {
-                _gameManager._objects.Add(hitinfo.collider.gameObject.name, hitinfo.collider.gameObject);
+                gameManager._objects.Add(hitinfo.collider.gameObject.name, hitinfo.collider.gameObject);
 
                 Destroy(hitinfo.collider.gameObject);
             }
@@ -68,9 +66,9 @@ public class PlayerInteraction : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         gameObject.GetComponentInChildren<PlayerMovement>().SetEnabledMove(true);
         gameObject.GetComponentInChildren<PlayerLook>().SetEnabledLook(true);
-        _dialogueRunner.GetComponentInChildren<Image>().enabled = false;
-        _dialogueRunner.GetComponentInChildren<AudioSource>().Stop();
-        light.intensity = 130000;
+        dialogueRunner.GetComponentInChildren<Image>().enabled = false;
+        dialogueRunner.GetComponentInChildren<AudioSource>().Stop();
+        _light.intensity = 130000;
     }
 
     public void OnStartDialogue()
@@ -78,7 +76,7 @@ public class PlayerInteraction : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         gameObject.GetComponentInChildren<PlayerMovement>().SetEnabledMove(false);
         gameObject.GetComponentInChildren<PlayerLook>().SetEnabledLook(false);
-        _dialogueRunner.GetComponentInChildren<Image>().enabled = true;
-        light.intensity = 50000;
+        dialogueRunner.GetComponentInChildren<Image>().enabled = true;
+        _light.intensity = 50000;
     }
 }

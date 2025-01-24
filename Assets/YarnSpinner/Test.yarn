@@ -1,0 +1,35 @@
+﻿title: Test
+---
+    Box: test 1 2 3.
+    <<if GoToNPC("Richard")>>
+        <<jump EndTtest>>
+    <<endif>>
+===
+
+title: EndTtest
+---
+Box: eindeTest
+===
+
+
+title: jaAntwoord
+---
+Box: dat is mooi geef het maar hier.
+    <<if GoToNPC("Richard")>>
+    -> jij: nee nog niet
+        <<jump Cybork>>
+    <<endif>>
+===
+
+title: neeAntwoord
+---
+Box: kan je het even pakken dan.
+ <<if PlayerHasItem("Yellow")>>
+-> jij: ja ik heb het hier
+    <<jump jaAntwoord>>
+-> jij: nee nog niet
+    <<jump neeAntwoord>>
+<<endif>>
+-> jij: nee nog niet
+    <<jump neeAntwoord>>
+===

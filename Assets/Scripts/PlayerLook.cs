@@ -17,8 +17,8 @@ public class PlayerLook : MonoBehaviour
     {
         backUpsensX = sensX;
         backUpsensY = sensY;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+       // Cursor.lockState = CursorLockMode.Locked;
+       // Cursor.visible = false;
     }
 
     void Update()

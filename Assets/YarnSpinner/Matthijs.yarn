@@ -1,4 +1,17 @@
 ﻿title: Matthijs
 ---
 Matthijs: *Dood*
+-> investigate body
+    When pressing the cat ears you will find out that they’re fake and that the victim is a mole.
+    <<if GoToNPC("Richard")>><<endif>>
+    Richard: It was a disguise. The cat ears were fake. The words are very similar in Dutch, aren't they? Here, they are called kattenoren.
+    <<if AddToDictionary("Cat ears")>><<endif>>
+    <<if AddToDictionary("Mole")>><<endif>>
+    -> more investigate body
+        When pressing the neck of the victim you will find out he has a knife sticking out of his neck.
+        <<if GoToNPC("Richard")>><<endif>>
+        Richard: This has to be the murder weapon. A knife, huh... Dutch for mes.
+        <<if AddToDictionary("Knife")>><<endif>>
+    
+-> leave body
 ===

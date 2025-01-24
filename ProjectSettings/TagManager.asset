@@ -9,6 +9,7 @@ TagManager:
   - NPC
   - Item
   - WordObject
+  - AllNPC
   layers:
   - Default
   - TransparentFX

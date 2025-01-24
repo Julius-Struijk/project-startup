@@ -1,0 +1,25 @@
+﻿title: Start
+---
+    Cybork: Welcome! I am Cybork, my assistent told me I should greet you to our town, I think I will be the mayor of this place soon!
+    Cybork: Sadly I have heard reports of a cat being murdered, I was told this would look bad on my career as mayor if it goes unresolved.
+    Cybork: I think the scene of the crime can be found in front of Pieters cafe. Haven't looked myself.
+    Cybork: I am not sure but I think not everyone here speaks English. Good luck detective with solving this case. I will give you this map.
+    <<if GoToNPC("Richard")>><<endif>>
+    Richard: Let's open the map with M to see which richtingen, meaning directions, we need to take. It's all in Dutch, but you'll manage to deciper it.    
+===
+
+
+
+title: Cybork
+---
+    Cybork: do you now ho did it?
+-> Berend
+-> Catharina
+-> Cybork
+-> Matthijs
+-> Pieter
+-> Richard
+-> Sjaak
+-> Whilhelmina
+===
+

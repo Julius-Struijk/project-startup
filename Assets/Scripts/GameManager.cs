@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections;
 using UnityEngine;
 using Yarn.Unity;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,29 +16,54 @@ public class GameManager : MonoBehaviour
     public Camera _camera;
 
     public Dictionary<string, GameObject> _objects = new Dictionary<string, GameObject>();
+    public Dictionary<string, NPCInteraction> _NPC = new Dictionary<string, NPCInteraction>();
 
     void Start()
     {
+        Transform[] allNPC = GameObject.FindGameObjectWithTag("AllNPC").GetComponentsInChildren<Transform>();
+
+        foreach (var obj in allNPC)
+        {
+            if (obj.gameObject.tag == "NPC")
+            {
+                Debug.Log(obj.gameObject.name);
+                _NPC.Add(obj.gameObject.name, obj.gameObject.GetComponent<NPCInteraction>());
+            }
+        }
+
         _dialogueRunner.AddFunction<string, bool>("PlayerMetNPC", PlayerMetNPC);
         _dialogueRunner.AddFunction<string, bool>("PlayerHasItem", PlayerHasItem);
         _dialogueRunner.AddFunction<string, bool>("PlayerGifItem", PlayerGifItem);
+        _dialogueRunner.AddFunction<string, bool>("GoToNPC", GoToNPC);
+        _dialogueRunner.AddFunction<string, bool>("AddToDictionary", AddToDictionary);
     }
+    
 
     public GameObject GetPlayer()
-    { 
-        return _player;
-    }    
-
-    public void StartInteraction(string name, Sprite image, AudioClip audioClip)
     {
+        return _player;
+    }
 
-        Debug.Log("test hier " + name + " / " + image + " / " + audioClip);
-        _dialogueRunner.StartDialogue(name);
+    public void StartInteraction(Sprite image, AudioClip audioClip, string name = null)
+    {
+        Debug.Log("test hier " + image + " / " + audioClip + " / " + name);
+
+        if (name != null) _dialogueRunner.StartDialogue(name);
         _dialogueRunner.GetComponentInChildren<Image>().sprite = image;
         _dialogueRunner.GetComponentInChildren<AudioSource>().clip = audioClip;
         _dialogueRunner.GetComponentInChildren<AudioSource>().Play();
     }
+    private bool GoToNPC(string NPCName)
+    {
+        StartInteraction(_NPC[NPCName].image.sprite, _NPC[NPCName].audioClip);
+        return true;
+    }
+    private bool AddToDictionary(string newWorld)
+    {
+        Debug.Log($"add {newWorld} to dictionary");
 
+        return true;
+    }
     private bool PlayerMetNPC(string NPCName)
     {
         Debug.Log("checking npc " + NPCName);
@@ -48,11 +74,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            GameObject gameObject = GameObject.FindGameObjectsWithTag("NPC").Where(NPC => NPC.name == NPCName).First();
-            _objects.Add(gameObject.name, gameObject);
+            _objects.Add(NPCName, _NPC[NPCName].gameObject);
             return false;
         }
-    }
+    }   
 
     private bool PlayerHasItem(string item)
     {
