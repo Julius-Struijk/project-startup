@@ -21,8 +21,9 @@ public class WordsAdding : MonoBehaviour
 
     void EnableWord(int index)
     {
-        if(index < words.Count)
+        if(index < words.Count && index >= 0)
         words[index].SetActive(true);
+        Debug.LogFormat("Added word: {0}", words[index].name);
     }
 
     private void OnDestroy()
