@@ -21,13 +21,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Transform[] allNPC = GameObject.FindGameObjectWithTag("AllNPC").GetComponentsInChildren<Transform>();
-
-        foreach (var obj in allNPC)
+        if(allNPC != null)
         {
-            if (obj.gameObject.tag == "NPC")
+            foreach (var obj in allNPC)
             {
-                Debug.Log(obj.gameObject.name);
-                _NPC.Add(obj.gameObject.name, obj.gameObject.GetComponent<NPCInteraction>());
+                if (obj.gameObject.tag == "NPC")
+                {
+                    Debug.Log(obj.gameObject.name);
+                    _NPC.Add(obj.gameObject.name, obj.gameObject.GetComponent<NPCInteraction>());
+                }
             }
         }
 

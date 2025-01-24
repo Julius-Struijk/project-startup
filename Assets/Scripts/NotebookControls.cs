@@ -6,8 +6,16 @@ using System;
 
 public class NotebookControls : MonoBehaviour
 {
+    public static event Action OnFullySolved;
+
     [SerializeField] List<GameObject> notebookPages;
     int currentPage = 0;
+    int solvedPages = 0;
+
+    private void Start()
+    {
+        InputBoxAvailability.OnPageSolved += SolvedCheck;
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,5 +35,21 @@ public class NotebookControls : MonoBehaviour
             currentPage++;
             notebookPages[currentPage].SetActive(true);
         }
+    }
+
+    // Once a page has been fully solved this increments by one. Once it matches the page count, that means that all pages have been solved.
+    void SolvedCheck()
+    {
+        solvedPages++;
+        if(solvedPages >= notebookPages.Count && OnFullySolved != null) 
+        {
+            OnFullySolved();
+            Debug.Log("Notebook has been fully solved!");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        InputBoxAvailability.OnPageSolved -= SolvedCheck;
     }
 }

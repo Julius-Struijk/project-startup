@@ -9,8 +9,10 @@ public class InputBoxAvailability : MonoBehaviour
     [SerializeField] UDictionary<GameObject, GameObject> wordPairsSolution;
     List<GameObject> correctlyPairedWords;
     int correctPairsCount = 0;
+    int unsolvedPairsOnPage = 3;
 
     public static event Action<List<GameObject>> OnCorrectSolutions;
+    public static event Action OnPageSolved;
     public static event Action<List<GameObject>> OnListShare;
 
     private void Start()
@@ -28,9 +30,16 @@ public class InputBoxAvailability : MonoBehaviour
         if(correctPairsCount == 3 && OnCorrectSolutions != null)
         {
             OnCorrectSolutions(correctlyPairedWords);
+            // Detracts solved pairs on the page, to see how many are left.
+            unsolvedPairsOnPage -= correctPairsCount;
             correctPairsCount = 0;
             Debug.Log("3 pairs are correct!");
 
+            if(unsolvedPairsOnPage <= 0 && OnPageSolved != null) 
+            {
+                OnPageSolved();
+                Debug.LogFormat("Page {0} is fully solved.", gameObject.name);
+            }
         }
     }
 
