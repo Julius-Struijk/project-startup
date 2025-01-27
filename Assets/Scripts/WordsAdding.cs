@@ -19,12 +19,16 @@ public class WordsAdding : MonoBehaviour
         
     }
 
-    void EnableWord(int index)
+    void EnableWord(List<int> indexesToAdd)
     {
-        if(index < words.Count - 1 && index >= 0)
-        words[index].SetActive(true);
-        words[index + 1].SetActive(true);
-        Debug.LogFormat("Added word: {0}", words[index].name);
+        foreach (int index in indexesToAdd)
+        {
+            if (index >= 0 && index < words.Count - 1)
+            {
+                words[index].SetActive(true);
+                Debug.LogFormat("Added word: {0}", words[index].name);
+            }
+        }
     }
 
     private void OnDestroy()
