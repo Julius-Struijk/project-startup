@@ -6,15 +6,20 @@ public class PauseGame : MonoBehaviour
 {
     private bool isPaused = false;
     bool talking = false;
+    bool allWordsAdded = false;
     public GameObject pauseMenu;         
     public GameObject otherUIToDisable;    
     public string mainMenuSceneName;
     [SerializeField] KeyCode pauseButton;
     [SerializeField] bool enableOtherUI;
 
+    // This is allows for a more efficient way to check if all words have been added.
+    public static event Action OnCheckWordsStatus;
+
     void Start()
     {
         PlayerInteraction.OnCharacterTalk += TalkingToCharacter;
+        WordsAdding.OnAllWordsAdded += AllWordsAdded;
 
         if (pauseMenu != null)
         {
@@ -32,14 +37,19 @@ public class PauseGame : MonoBehaviour
         // If the player is talking to a character, they can't open the UI menu's.
         if (Input.GetKeyDown(pauseButton) && !talking)
         {
-            if (isPaused)
+            // Prevents the notebook specifically from being opened if all words haven't been added.
+            if(pauseButton != KeyCode.Tab || allWordsAdded)
             {
-                ResumeGame();
+                if (isPaused)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    Pause();
+                }
             }
-            else
-            {
-                Pause();
-            }
+            else if(OnCheckWordsStatus != null) { OnCheckWordsStatus(); }
         }
     }
 
@@ -105,8 +115,11 @@ public class PauseGame : MonoBehaviour
         talking = pTalking;
     }
 
+    void AllWordsAdded() { allWordsAdded = true; }
+
     private void OnDestroy()
     {
         PlayerInteraction.OnCharacterTalk -= TalkingToCharacter;
+        WordsAdding.OnAllWordsAdded -= AllWordsAdded;
     }
 }
