@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
+using System;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerInteraction : MonoBehaviour
     public Camera _camera;
     public GameObject _richard;
     GameObject currentNPC;
+    public static event Action<bool> OnCharacterTalk;
 
     void Start()
     {
@@ -19,7 +21,11 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape)) dialogueRunner.Stop();
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            dialogueRunner.Stop();
+            if (OnCharacterTalk != null) { OnCharacterTalk(false); }
+        }
 
         if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && Input.GetMouseButtonUp(0) && !dialogueRunner.Dialogue.IsActive)
         {
@@ -28,6 +34,8 @@ public class PlayerInteraction : MonoBehaviour
                 // Saving the NPC, so we can add it's word after the conversation is over.
                 currentNPC = hitinfo.collider.gameObject;
                 currentNPC.GetComponent<NPCInteraction>().StartInteraction();
+                // This will prevent the player from opening menu's while talking to NPCs.
+                if(OnCharacterTalk != null) { OnCharacterTalk(true); }
             }
             else if (hitinfo.collider.gameObject.tag == "Item")
             {
@@ -60,6 +68,8 @@ public class PlayerInteraction : MonoBehaviour
         dialogueRunner.GetComponentInChildren<Image>().enabled = false;
         dialogueRunner.GetComponentInChildren<AudioSource>().Stop();
         _light.intensity = 130000;
+        // Reenable the ability to open menu's.
+        if (OnCharacterTalk != null) { OnCharacterTalk(false); }
     }
 
     public void OnStartDialogue()

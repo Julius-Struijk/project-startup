@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class PauseGame : MonoBehaviour
 {
     private bool isPaused = false;
+    bool talking = false;
     public GameObject pauseMenu;         
     public GameObject otherUIToDisable;    
     public string mainMenuSceneName;
@@ -13,6 +14,8 @@ public class PauseGame : MonoBehaviour
 
     void Start()
     {
+        PlayerInteraction.OnCharacterTalk += TalkingToCharacter;
+
         if (pauseMenu != null)
         {
             pauseMenu.SetActive(false);
@@ -26,7 +29,8 @@ public class PauseGame : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(pauseButton))
+        // If the player is talking to a character, they can't open the UI menu's.
+        if (Input.GetKeyDown(pauseButton) && !talking)
         {
             if (isPaused)
             {
@@ -94,5 +98,15 @@ public class PauseGame : MonoBehaviour
     {
         Console.WriteLine("Outta here");
         Application.Quit();
+    }
+
+    void TalkingToCharacter(bool pTalking)
+    {
+        talking = pTalking;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerInteraction.OnCharacterTalk -= TalkingToCharacter;
     }
 }
