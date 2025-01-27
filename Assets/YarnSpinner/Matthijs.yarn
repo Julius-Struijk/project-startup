@@ -1,27 +1,33 @@
 ﻿title: Matthijs
 ---
     Matthijs: *Dood*
-    -> investigate body
-        When pressing the cat ears you will find out that they’re fake and that the victim is a mole.
-        <<if GoToNPC("Richard")>><<endif>>
-        Richard: It was a disguise. The cat ears were fake. The words are very similar in Dutch, aren't they? Here, they are called kattenoren.
-        <<if AddToDictionary("Cat ears")>><<endif>>
-        <<if AddToDictionary("Mole")>><<endif>>
-        -> more investigate body
-            When pressing the neck of the victim you will find out he has a knife sticking out of his neck.
-            <<if GoToNPC("Richard")>><<endif>>
-            Richard: This has to be the murder weapon. A knife, huh... Dutch for mes.
-            <<if AddToDictionary("Knife")>><<endif>>
-            -> even more investigate body
-                When investigating his clothes you will find a police badge under his shirt with his picture and name.
-                <<if GoToNPC("Richard")>><<endif>>
-                Richard: Hm.. politie.. oh its a Dutch police badge, this looks important
-                <<if AddToDictionary("Police")>><<endif>>
-                 -> investigate arauwt the body
-                    When further investigating the crime scene you find a bag with a fake ID card.
-                    <<if GoToNPC("Richard")>><<endif>>
-                    Richard: A bag with an ID card... bag is a tas in Dutch. This doesn't look like a real ID card. It's called an ID in both Dutch and English, but the full word is identiteitskaart in Dutch.
-                    <<if AddToDictionary("Bag")>><<endif>>
-                    <<if AddToDictionary("Identity")>><<endif>>  
+    -> investigate Cat ears
+        <<jump Cat_ears>>
+    -> investigate Knife
+        <<jump Knife>>
+    -> investigate badge
+        <<jump badge>>
     -> leave body
+===
+
+title: Cat_ears
+---
+    <<if GoToNPC("Richard")>><<endif>>
+    Richard: It was a disguise. The cat ears were fake. The words are very similar in Dutch, aren't they? Here, they are called kattenoren.
+    <<if AddToDictionary("Cat ears")>><<endif>>
+    <<if AddToDictionary("Mole")>><<endif>>
+===
+
+title: Knife
+---
+    <<if GoToNPC("Richard")>><<endif>>
+    Richard: This has to be the murder weapon. A knife, huh... Dutch for mes.
+    <<if AddToDictionary("Knife")>><<endif>>
+===
+
+title: badge
+---
+    <<if GoToNPC("Richard")>><<endif>>
+    Richard: Hm.. politie.. oh its a Dutch police badge, this looks important
+    <<if AddToDictionary("Police")>><<endif>>
 ===
