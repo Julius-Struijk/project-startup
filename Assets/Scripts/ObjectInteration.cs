@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class ObjectInteration : MonoBehaviour
 {
-
     public Canvas item;
     public Sprite image;
     public bool sowing;
