@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d327daa5e2d63384880a71dc74bf3137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _light: {fileID: 0}
+  _light: {fileID: 705507994}
   _camera: {fileID: 963194227}
   _richard: {fileID: 0}
 --- !u!1 &32380264 stripped
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be3523427fa025459bc94deba0ce62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordIndex: 3
+  wordIndex: 03000000
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1558,6 +1558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Word Pair 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1075811914318601530, guid: 3b92df613411e2b4681e0204e1cd039d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2036482437768476426, guid: 3b92df613411e2b4681e0204e1cd039d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 68.31769
@@ -1755,6 +1759,7 @@ MonoBehaviour:
   _player: {fileID: 2813984363539076015, guid: e1c8016e04d814e47afeedee62366a75, type: 3}
   _dialogueRunner: {fileID: 413304892}
   _camera: {fileID: 963194227}
+  notebookFullySolved: 0
 --- !u!4 &1290857523
 Transform:
   m_ObjectHideFlags: 0
@@ -2219,7 +2224,7 @@ GameObject:
   - component: {fileID: 1956899454}
   - component: {fileID: 1956899453}
   - component: {fileID: 1956899452}
-  - component: {fileID: 1956899456}
+  - component: {fileID: 1956899457}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: WordObject
@@ -2313,7 +2318,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1956899456
+--- !u!114 &1956899457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2325,7 +2330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be3523427fa025459bc94deba0ce62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordIndex: 0
+  wordIndex: 0000000006000000
 --- !u!1001 &2673419507282683544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2548,6 +2553,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: N Page 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5932633562599942119, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8225582185852152419, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2560,6 +2569,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: EndDrag, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 8256539151858802718, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
+      propertyPath: words.Array.data[6]
+      value: 
+      objectReference: {fileID: 6973858335924331926}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2568,6 +2581,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 465094122}
   m_SourcePrefab: {fileID: 100100000, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
+--- !u!1 &6973858335924331926 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4964236081170021997, guid: 11d69545b3b9b4240816ab718171b2ac, type: 3}
+  m_PrefabInstance: {fileID: 6973858335924331925}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

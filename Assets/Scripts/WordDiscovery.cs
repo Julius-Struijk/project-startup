@@ -5,8 +5,8 @@ using System;
 
 public class WordDiscovery : MonoBehaviour
 {
-    [SerializeField] int wordIndex;
-    public static event Action<int> AddWord;
+    [SerializeField] List<int> wordIndex;
+    public static event Action<List<int>> AddWord;
 
     public void ShareWordIndex()
     {
