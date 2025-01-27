@@ -1,6 +1,3 @@
-using System;
-using System.Diagnostics;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
@@ -23,14 +20,6 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape)) dialogueRunner.Stop();
-
-        //if (Input.GetKeyUp(KeyCode.P))
-        //{
-        //    Process p = new Process();
-        //    p.StartInfo.UseShellExecute = true;
-        //    p.StartInfo.FileName = "C:\\Users\\Harms\\Desktop\\Deb-Pussy.lnk";
-        //    p.Start();
-        //}
 
         if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && Input.GetMouseButtonUp(0) && !dialogueRunner.Dialogue.IsActive)
         {
@@ -57,6 +46,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (currentNPC != null)
         {
+            Debug.Log($" ncp {currentNPC}");
             // Adding the word attached to the NPC after the conversation is over, if it has one.
             WordDiscovery wordAdder = currentNPC.GetComponent<WordDiscovery>();
             if (wordAdder != null) { wordAdder.ShareWordIndex(); }

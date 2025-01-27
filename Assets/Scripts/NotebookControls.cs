@@ -44,6 +44,7 @@ public class NotebookControls : MonoBehaviour
         if(solvedPages >= notebookPages.Count && OnFullySolved != null) 
         {
             OnFullySolved();
+            GameObject.FindAnyObjectByType<GameManager>().SetNotebookFullySolved(true);
             Debug.Log("Notebook has been fully solved!");
         }
     }

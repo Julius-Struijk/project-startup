@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 using Yarn.Unity;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject _player;
     public DialogueRunner _dialogueRunner;
     public Camera _camera;
+    public bool notebookFullySolved = false;
 
     public Dictionary<string, GameObject> _objects = new Dictionary<string, GameObject>();
     public Dictionary<string, NPCInteraction> _NPC = new Dictionary<string, NPCInteraction>();
@@ -38,14 +37,14 @@ public class GameManager : MonoBehaviour
         _dialogueRunner.AddFunction<string, bool>("PlayerGifItem", PlayerGifItem);
         _dialogueRunner.AddFunction<string, bool>("GoToNPC", GoToNPC);
         _dialogueRunner.AddFunction<string, bool>("AddToDictionary", AddToDictionary);
-    }
-    
+        _dialogueRunner.AddFunction<bool>("NotebookFullySolved", NotebookFullySolved);
+    }    
 
     public GameObject GetPlayer()
     {
         return _player;
     }
-
+ 
     public void StartInteraction(Sprite image, AudioClip audioClip, string name = null)
     {
         Debug.Log("test hier " + image + " / " + audioClip + " / " + name);
@@ -55,17 +54,13 @@ public class GameManager : MonoBehaviour
         _dialogueRunner.GetComponentInChildren<AudioSource>().clip = audioClip;
         _dialogueRunner.GetComponentInChildren<AudioSource>().Play();
     }
-    private bool GoToNPC(string NPCName)
-    {
-        StartInteraction(_NPC[NPCName].image.sprite, _NPC[NPCName].audioClip);
-        return true;
-    }
+
     private bool AddToDictionary(string newWorld)
     {
         Debug.Log($"add {newWorld} to dictionary");
-
         return true;
     }
+
     private bool PlayerMetNPC(string NPCName)
     {
         Debug.Log("checking npc " + NPCName);
@@ -90,5 +85,20 @@ public class GameManager : MonoBehaviour
     {
         _objects.Remove(item);
         return true;
+    }
+    private bool GoToNPC(string NPCName)
+    {
+        StartInteraction(_NPC[NPCName].image.sprite, _NPC[NPCName].audioClip);
+        return true;
+    }
+
+    public bool NotebookFullySolved()
+    {
+        return notebookFullySolved;
+    }
+
+    public void SetNotebookFullySolved(bool b)
+    {
+        notebookFullySolved = true;
     }
 }

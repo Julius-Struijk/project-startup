@@ -1,6 +1,8 @@
 ﻿title: Sjaak
 ---
     Sjaak: I see everything. Man, he leave the winkel uh.. store on his fiets, ja bicycle.
-Sjaak: He fall off. Cat ears... you know, kattenoren... they fall. He put them back on quickly, but too late. Cat saw.
-Sjaak: The cat, Catharina, she follow him. She go after him, in the alley. Then I don’t see more. 
+    Sjaak: He fall off. Cat ears... you know, kattenoren... they fall. He put them back on quickly, but too late. Cat saw.
+    Sjaak: The cat, Catharina, she follow him. She go after him, in the alley. Then I don’t see more. 
+    <<if AddToDictionary("Store")>><<endif>>
+    <<if AddToDictionary("Bicycle")>><<endif>>
 ===

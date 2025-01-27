@@ -1,9 +1,10 @@
 ﻿title: Cornelis
 ---
-Cornelis: Detective! You... eh... want know about Matthijs the mole. Big geheim... uhm... secret!
-Cornelis: Matthijs... not katten gang. He... politie. Uh... police! Undercover! How you say... spionage? Ja, spying!
-Richard: Ah righ politie is police, we need to remember this.
-Police added to the dictionary
-Cornelis: He dress like kat. But... he mol.. uh mole. Always ask... vragen. Uh, questions! About drugs. Kat gang they bad. Dangerous!
-Cornelis: Sorry, detective, I no know veel. But he here vaak… often. Ate snacks, talked, then go.
+    Cornelis: Detective! You... eh... want know about Matthijs the mole. Big geheim... uhm... secret!
+    Cornelis: Matthijs... not katten gang. He... politie. Uh... police! Undercover! How you say... spionage? Ja, spying!
+    Richard: Ah righ politie is police, we need to remember this.
+    <<if AddToDictionary("Police")>><<endif>>
+    Cornelis: He dress like kat. But... he mol.. uh mole. Always ask... vragen. Uh, questions! About drugs. Kat gang they bad. Dangerous!
+    Cornelis: Sorry, detective, I no know veel. But he here vaak… often. Ate snacks, talked, then go.
+    <<if AddToDictionary("Mole")>><<endif>>
 ===

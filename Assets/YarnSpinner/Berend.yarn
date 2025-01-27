@@ -1,6 +1,7 @@
 ﻿title: Berend
 ---
-Berend: Wat gebeurde er in de nacht...?
-Berend: Oh, hello... I was just talking to myself, wondering what happened during the night. Let me tell you what I heard on the night of the murder.
-Berend: I heard the sound of hollow clacking and called out to ask who was there, when suddenly I heard someone fall, and the other person quickly ran away.
+    Berend: Wat gebeurde er in de nacht...?
+    Berend: Oh, hello... I was just talking to myself, wondering what happened during the night. Let me tell you what I heard on the night of the murder.
+    Berend: I heard the sound of hollow clacking and called out to ask who was there, when suddenly I heard someone fall, and the other person quickly ran away.
+    <<if AddToDictionary("Night")>><<endif>>    
 ===
