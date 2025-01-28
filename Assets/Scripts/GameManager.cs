@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         return notebookFullySolved;
     }
 
-    public void SetNotebookFullySolved(bool b)
+    public void SetNotebookFullySolved()
     {
         notebookFullySolved = true;
     }

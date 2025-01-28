@@ -11,6 +11,7 @@ public class DragAndDrop : MonoBehaviour
     Image wordBoxImage;
     GameObject filledInputBox;
     bool matchedWithPair = false;
+    GameObject startingParent;
 
     public static event Action<GameObject, GameObject> OnInputBoxFilled;
     public static event Action<GameObject, GameObject> OnInputBoxExited;
@@ -22,6 +23,7 @@ public class DragAndDrop : MonoBehaviour
         InputBoxAvailability.OnCorrectSolutions += PairMatched;
         rt = gameObject.GetComponent<RectTransform>();
         wordBoxImage = gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();
+        startingParent = gameObject.transform.parent.gameObject;
     }
 
     // Update is called once per frame
@@ -35,6 +37,12 @@ public class DragAndDrop : MonoBehaviour
         // Stops all dragging functions once a pair has been found.
         if(!matchedWithPair)
         {
+            // Moving the word up the hierarchy so they will be always shown infront of the input boxes.
+            if(startingParent == gameObject.transform.parent.gameObject)
+            {
+                gameObject.transform.SetParent(startingParent.transform.parent.gameObject.transform);
+            }
+
             // Marking a box as available once the word leaves it.
             if (filledInputBox != null)
             {
@@ -57,7 +65,7 @@ public class DragAndDrop : MonoBehaviour
     void EndDrag(List<GameObject> inputBoxes)
     {
         // Checks if the page the word is on is still active. This prevents the word from affecting lists on other pages.
-        if(!matchedWithPair && gameObject.transform.parent.gameObject.transform.parent.gameObject.activeSelf)
+        if (!matchedWithPair && gameObject.transform.parent.gameObject.activeSelf && filledInputBox == null)
         {
             foreach (GameObject inputBox in inputBoxes)
             {
