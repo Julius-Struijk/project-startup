@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{5f873f4b-b081-4a21-bc2a-d3ced448ad8a}">
+		<property name="assetPath">
+			<value>496306__zaziesound__water-drops-6 - Trimmed.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.5</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{03319756-999d-4bdb-836c-62c5ee66a914}</destination>
+		</relationship>
+	</object>
+</objects>

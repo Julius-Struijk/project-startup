@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{69ce8664-cdf4-4b80-afb6-de0e40bb76cf}">
+		<property name="assetPath">
+			<value>Raccoon Dialogue.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{03319756-999d-4bdb-836c-62c5ee66a914}</destination>
+		</relationship>
+	</object>
+</objects>
