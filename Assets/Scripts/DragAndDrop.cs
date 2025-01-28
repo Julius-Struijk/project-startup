@@ -56,8 +56,8 @@ public class DragAndDrop : MonoBehaviour
 
     void EndDrag(List<GameObject> inputBoxes)
     {
-        // Checks if the page the word is a child of is still active. This prevents the word from affecting lists on other pages.
-        if(!matchedWithPair && gameObject.transform.parent.gameObject.activeSelf)
+        // Checks if the page the word is on is still active. This prevents the word from affecting lists on other pages.
+        if(!matchedWithPair && gameObject.transform.parent.gameObject.transform.parent.gameObject.activeSelf)
         {
             foreach (GameObject inputBox in inputBoxes)
             {
