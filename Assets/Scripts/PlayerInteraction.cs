@@ -34,7 +34,8 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitinfo) && Input.GetMouseButtonUp(0) && !dialogueRunner.Dialogue.IsActive)
         {
-            if (hitinfo.collider.gameObject.tag == "NPC")
+            // Timescale is set to 0 so that the game is paused when in the menus. This can be used to prevent the player from talking to NPCs when they're in a menu.
+            if (hitinfo.collider.gameObject.tag == "NPC" && Time.timeScale != 0f)
             {
                 // Saving the NPC, so we can add it's word after the conversation is over.
                 currentNPC = hitinfo.collider.gameObject;
