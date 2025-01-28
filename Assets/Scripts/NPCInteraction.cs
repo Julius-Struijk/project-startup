@@ -16,6 +16,12 @@ public class NPCInteraction : MonoBehaviour
 
     public void StartInteraction()
     {
+        NextDilegeaNode();
         _gameManager.StartInteraction(image.sprite, audioClip, this.name);
+    }
+
+    static public void NextDilegeaNode()
+    {
+
     }
 }

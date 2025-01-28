@@ -9,8 +9,9 @@ public class ObjectInteration : MonoBehaviour
 
     void Update()
     {
-        if (sowing && (Input.GetKeyUp(KeyCode.Escape) || Input.GetMouseButtonUp(0)))
+        if (sowing && (Input.GetKeyUp(KeyCode.Escape)))
         {
+            Debug.Log("hiding item");
             item.GetComponent<Canvas>().enabled = false;
             sowing = false;
         }
