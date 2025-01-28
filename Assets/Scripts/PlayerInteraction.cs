@@ -9,9 +9,9 @@ public class PlayerInteraction : MonoBehaviour
     private DialogueRunner dialogueRunner;
     public Light _light;
     public Camera _camera;
-    public GameObject _richard;
     GameObject currentNPC;
     public static event Action<bool> OnCharacterTalk;
+    public Canvas _map;
 
     void Start()
     {
@@ -21,6 +21,11 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.M) && !dialogueRunner.Dialogue.IsActive)
+        {
+            _map.GetComponent<Canvas>().enabled = !_map.GetComponent<Canvas>().enabled;
+        }
+
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             dialogueRunner.Stop();
