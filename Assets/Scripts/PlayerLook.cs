@@ -15,7 +15,7 @@ public class PlayerLook : MonoBehaviour
 
     void Start()
     {
-        //QualitySettings.vSyncCount = 2;
+        //QualitySettings.vSyncCount = 0;
         //Application.targetFrameRate = 60;
 
         backUpsensX = sensX;
@@ -28,10 +28,13 @@ public class PlayerLook : MonoBehaviour
     {
         float mouseX = Input.GetAxis("Mouse X") * sensX;
         float mouseY = Input.GetAxis("Mouse Y") * sensY;
+        // Limiting the effect of time.deltaTime because it was making the look movement too fast when FPS was low.
+        mouseX = Mathf.Clamp(mouseX * Time.deltaTime, -4, 4);
+        mouseY = Mathf.Clamp(mouseY * Time.deltaTime, -4, 4);
+        //Debug.LogFormat("Look speed: {0}", mouseX);
 
-        yRotation += mouseX * Time.deltaTime;
-        xRotation -= mouseY * Time.deltaTime;
-        //Debug.LogFormat("Look speed: {0}", PlayerOrientation.rotation.x);
+        yRotation += mouseX;
+        xRotation -= mouseY;
 
         xRotation = Mathf.Clamp(xRotation, -90f, 80f);
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
