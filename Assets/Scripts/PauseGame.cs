@@ -57,8 +57,9 @@ public class PauseGame : MonoBehaviour
         }
 
         // Just added this to help with testing, if it's still here, please remove it.
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         {
+            Debug.Log("Going back to main menu.");
             BackToMainMenu();
         }
     }

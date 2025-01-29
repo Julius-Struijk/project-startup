@@ -4,35 +4,42 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-    private float backUpsensX, backUpsensY;
-
-    [SerializeField] float sensX;
-    [SerializeField] float sensY;
+    [SerializeField] float sensX = 150;
+    [SerializeField] float sensY = 150;
     [SerializeField] Transform PlayerOrientation;
 
     float xRotation;
     float yRotation;
+    float backUpsensX; 
+    float backUpsensY;
 
     void Start()
     {
         //QualitySettings.vSyncCount = 0;
         //Application.targetFrameRate = 60;
 
-        Debug.Log("Player look works!");
-        backUpsensX = sensX;
-        backUpsensY = sensY;
+        // Setting a default value incase
+        if(sensX == 0 || sensY == 0)
+        {
+            backUpsensX = 150;
+            backUpsensY = 150;
+        }
+        else
+        {
+            backUpsensX = sensX;
+            backUpsensY = sensY;
+        }
        //Cursor.lockState = CursorLockMode.Locked;
        //Cursor.visible = false;
     }
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sensX;
-        float mouseY = Input.GetAxis("Mouse Y") * sensY;
+        float mouseX = Input.GetAxisRaw("Mouse X") * sensX;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * sensY;
         // Limiting the effect of time.deltaTime because it was making the look movement too fast when FPS was low.
         mouseX = Mathf.Clamp(mouseX * Time.deltaTime, -4, 4);
         mouseY = Mathf.Clamp(mouseY * Time.deltaTime, -4, 4);
-        //Debug.LogFormat("Look speed: {0}", mouseX);
 
         yRotation += mouseX;
         xRotation -= mouseY;
