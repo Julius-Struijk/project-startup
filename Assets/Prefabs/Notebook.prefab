@@ -209,8 +209,6 @@ MonoBehaviour:
   - {fileID: 9162481082454764701}
   - {fileID: 6970357022355024969}
   - {fileID: 4665257617192069587}
-  - {fileID: 292843963482644215}
-  - {fileID: 6024820606383559102}
   - {fileID: 9190426260685365010}
   - {fileID: 6716492101058214721}
   - {fileID: 3448014738310268469}
@@ -223,6 +221,8 @@ MonoBehaviour:
   - {fileID: 6638898649446689664}
   - {fileID: 5464241598738545156}
   - {fileID: 346542898257030764}
+  - {fileID: 292843963482644215}
+  - {fileID: 6024820606383559102}
 --- !u!114 &2437771140866641512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,8 +392,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -17.188232, y: -62.429535}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchoredPosition: {x: -14, y: -79}
+  m_SizeDelta: {x: 2052.4932, y: 1154.5276}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6012683882657107944
 CanvasRenderer:
@@ -423,7 +423,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 467cdf7278bd4f04fab58ecf6a96389a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -441,6 +441,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: Directions
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 3
@@ -677,6 +681,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: North
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 4
@@ -1010,6 +1018,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: Train station
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 9
@@ -1246,6 +1258,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: West
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 7
@@ -1490,6 +1506,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: Parking lot
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 12
@@ -1609,6 +1629,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: East
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 5
@@ -1841,6 +1865,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: South
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 6
@@ -1960,6 +1988,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: Hospital
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 8
@@ -2551,6 +2583,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: Bicycle Rack
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 1
@@ -2787,6 +2823,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: Police station
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 11
@@ -3031,6 +3071,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: Bus stop
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 2
@@ -3150,6 +3194,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5001309462437059053}
     m_Modifications:
+    - target: {fileID: 93137739857599388, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
+      propertyPath: m_Name
+      value: City center
+      objectReference: {fileID: 0}
     - target: {fileID: 2989736169651358618, guid: 8af3b5d5674134842bdee5272672d66d, type: 3}
       propertyPath: m_Name
       value: Filler Word 10
