@@ -55,6 +55,12 @@ public class PauseGame : MonoBehaviour
             }
             else if(OnCheckWordsStatus != null) { OnCheckWordsStatus(); }
         }
+
+        // Just added this to help with testing, if it's still here, please remove it.
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            BackToMainMenu();
+        }
     }
 
     void Pause()

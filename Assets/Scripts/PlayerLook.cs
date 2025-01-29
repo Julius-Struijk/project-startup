@@ -18,10 +18,11 @@ public class PlayerLook : MonoBehaviour
         //QualitySettings.vSyncCount = 0;
         //Application.targetFrameRate = 60;
 
+        Debug.Log("Player look works!");
         backUpsensX = sensX;
         backUpsensY = sensY;
-       // Cursor.lockState = CursorLockMode.Locked;
-       // Cursor.visible = false;
+       //Cursor.lockState = CursorLockMode.Locked;
+       //Cursor.visible = false;
     }
 
     void Update()

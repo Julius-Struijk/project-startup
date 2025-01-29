@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
             mainMenuMusic.Stop();
         }
 
+        Debug.Log("Loading main scene.");
         SceneManager.LoadScene(gameSceneName);
     }
 

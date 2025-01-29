@@ -47,7 +47,8 @@ public class PlayerInteraction : MonoBehaviour
             else if (hitinfo.collider.gameObject.tag == "WordObject")
             {
                 hitinfo.collider.GetComponentInParent<WordDiscovery>().ShareWordIndex();
-                hitinfo.collider.GetComponentInParent<ObjectInteration>().ShowItem();
+                ObjectInteration obj = hitinfo.collider.GetComponentInParent<ObjectInteration>();
+                if(obj != null) { obj.ShowItem(); }
             }
         }
     }
