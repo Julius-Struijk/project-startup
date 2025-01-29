@@ -22,7 +22,7 @@ public class InputBoxAvailability : MonoBehaviour
         DragAndDrop.OnInputBoxFilled += InputBoxEnter;
         DragAndDrop.OnInputBoxExited += InputBoxExit;
         EndDrag.OnDragEnd += ListShare;
-        Debug.Log("Starting page.");
+        Debug.LogFormat("Starting page {0}", gameObject.name);
     }
 
     private void Update()

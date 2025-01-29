@@ -22,11 +22,6 @@ public class PauseGame : MonoBehaviour
         PlayerInteraction.OnCharacterTalk += TalkingToCharacter;
         WordsAdding.OnAllWordsAdded += AllWordsAdded;
 
-        if (pauseMenu != null)
-        {
-            pauseMenu.SetActive(false);
-        }
-
         if (otherUIToDisable != null && enableOtherUI)
         {
             foreach(GameObject UI in otherUIToDisable)

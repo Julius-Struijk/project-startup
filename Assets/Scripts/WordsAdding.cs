@@ -15,6 +15,11 @@ public class WordsAdding : MonoBehaviour
     {
         WordDiscovery.AddWord += EnableWord;
         PauseGame.OnCheckWordsStatus += CheckWordsAdded;
+        Debug.LogFormat("Starting {0}", gameObject.name);
+
+        // I put this here so that this script will always be initialized before the game object is disabled.
+        //Debug.LogFormat("Hiding {0} with current status {1}", gameObject.name, gameObject.activeSelf);
+        gameObject.SetActive(false);
     }
 
     void EnableWord(List<int> indexesToAdd)
@@ -41,7 +46,7 @@ public class WordsAdding : MonoBehaviour
             if(!word.activeSelf) { break; }
             else { addedCounter++; }
         }
-        if(addedCounter == words.Count && OnAllWordsAdded != null) 
+        if(addedCounter == words.Count && OnAllWordsAdded != null && gameObject.CompareTag("Notebook")) 
         {
             Debug.Log("All words have been added!");
             allWordsAdded = true;

@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 4
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -6427,6 +6427,10 @@ PrefabInstance:
       propertyPath: mainMenuSceneName
       value: Main Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 2175231814623976907, guid: 3191046b225a6e848a4e5cbcd755cc2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2657166651248241789, guid: 3191046b225a6e848a4e5cbcd755cc2b, type: 3}
       propertyPath: m_Name
       value: UI Canvas
@@ -6434,6 +6438,10 @@ PrefabInstance:
     - target: {fileID: 3192724209383756884, guid: 3191046b225a6e848a4e5cbcd755cc2b, type: 3}
       propertyPath: mainMenuSceneName
       value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384115828180986529, guid: 3191046b225a6e848a4e5cbcd755cc2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8038598804153730542, guid: 3191046b225a6e848a4e5cbcd755cc2b, type: 3}
       propertyPath: m_Pivot.x
@@ -6522,7 +6530,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5736283898529935123, guid: 3191046b225a6e848a4e5cbcd755cc2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2049350487}
   m_SourcePrefab: {fileID: 100100000, guid: 3191046b225a6e848a4e5cbcd755cc2b, type: 3}
 --- !u!1 &1800109504 stripped
 GameObject:
@@ -7986,6 +7997,23 @@ MonoBehaviour:
   _dialogueRunner: {fileID: 1919335223}
   _camera: {fileID: 963194227}
   notebookFullySolved: 0
+--- !u!1 &2049350485 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5736283898529935123, guid: 3191046b225a6e848a4e5cbcd755cc2b, type: 3}
+  m_PrefabInstance: {fileID: 1792454714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2049350487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049350485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7996f4e2a4d89542a3e651a2f1f8141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2071581077 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4410397937948639508, guid: ba9b41171a7cd4d4699596f0d15d23c3, type: 3}
