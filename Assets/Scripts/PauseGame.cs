@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class PauseGame : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class PauseGame : MonoBehaviour
     bool talking = false;
     bool allWordsAdded = false;
     public GameObject pauseMenu;         
-    public GameObject otherUIToDisable;    
+    [SerializeField] List<GameObject> otherUIToDisable;    
     public string mainMenuSceneName;
     [SerializeField] KeyCode pauseButton;
     [SerializeField] bool enableOtherUI;
@@ -28,7 +29,10 @@ public class PauseGame : MonoBehaviour
 
         if (otherUIToDisable != null && enableOtherUI)
         {
-            otherUIToDisable.SetActive(true);
+            foreach(GameObject UI in otherUIToDisable)
+            {
+                UI.SetActive(true);
+            }
         }
     }
 
@@ -68,7 +72,10 @@ public class PauseGame : MonoBehaviour
 
         if (otherUIToDisable != null)
         {
-            otherUIToDisable.SetActive(false);
+            foreach (GameObject UI in otherUIToDisable)
+            {
+                UI.SetActive(false);
+            }
         }
     }
 
@@ -87,7 +94,10 @@ public class PauseGame : MonoBehaviour
 
         if (otherUIToDisable != null && enableOtherUI)
         {
-            otherUIToDisable.SetActive(true);
+            foreach (GameObject UI in otherUIToDisable)
+            {
+                UI.SetActive(true);
+            }
         }
     }
 
