@@ -19,21 +19,19 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
 
         if (mainMenuMusic != null)
         {
             mainMenuMusic.Stop();
         }
-        else
-        {
-            SceneManager.LoadScene(gameSceneName);
-        }
+
+        SceneManager.LoadScene(gameSceneName);
     }
 
     public void QuitGame()
     {
-        Console.WriteLine("Outta here");
+        Debug.Log("Outta here");
         Application.Quit();
     }
 }
