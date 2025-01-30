@@ -6,7 +6,6 @@ using System;
 
 public class NotebookControls : MonoBehaviour
 {
-    public static event Action OnFullySolved;
 
     [SerializeField] List<GameObject> notebookPages;
     int currentPage = 0;
@@ -39,10 +38,9 @@ public class NotebookControls : MonoBehaviour
     void SolvedCheck()
     {
         solvedPages++;
-        if(solvedPages >= notebookPages.Count && OnFullySolved != null) 
+        if(solvedPages >= notebookPages.Count) 
         {
-            OnFullySolved();
-            GameObject.FindAnyObjectByType<GameManager>().SetNotebookFullySolved(true);
+            FindAnyObjectByType<GameManager>().SetNotebookFullySolved();
             Debug.Log("Notebook has been fully solved!");
         }
     }

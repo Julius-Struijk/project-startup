@@ -9,7 +9,7 @@ public class InputBoxAvailability : MonoBehaviour
     [SerializeField] UDictionary<GameObject, GameObject> wordPairsSolution;
     List<GameObject> correctlyPairedWords;
     int correctPairsCount = 0;
-    int unsolvedPairsOnPage = 3;
+    int unsolvedPairsOnPage = 12;
 
     public static event Action<List<GameObject>> OnCorrectSolutions;
     public static event Action OnPageSolved;
@@ -22,7 +22,7 @@ public class InputBoxAvailability : MonoBehaviour
         DragAndDrop.OnInputBoxFilled += InputBoxEnter;
         DragAndDrop.OnInputBoxExited += InputBoxExit;
         EndDrag.OnDragEnd += ListShare;
-        Debug.Log("Starting page.");
+        Debug.LogFormat("Starting page {0}", gameObject.name);
     }
 
     private void Update()

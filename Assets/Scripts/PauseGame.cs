@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class PauseGame : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class PauseGame : MonoBehaviour
     bool talking = false;
     bool allWordsAdded = false;
     public GameObject pauseMenu;         
-    public GameObject otherUIToDisable;    
+    [SerializeField] List<GameObject> otherUIToDisable;    
     public string mainMenuSceneName;
     [SerializeField] KeyCode pauseButton;
     [SerializeField] bool enableOtherUI;
@@ -21,14 +22,12 @@ public class PauseGame : MonoBehaviour
         PlayerInteraction.OnCharacterTalk += TalkingToCharacter;
         WordsAdding.OnAllWordsAdded += AllWordsAdded;
 
-        if (pauseMenu != null)
-        {
-            pauseMenu.SetActive(false);
-        }
-
         if (otherUIToDisable != null && enableOtherUI)
         {
-            otherUIToDisable.SetActive(true);
+            foreach(GameObject UI in otherUIToDisable)
+            {
+                UI.SetActive(true);
+            }
         }
     }
 
@@ -51,6 +50,13 @@ public class PauseGame : MonoBehaviour
             }
             else if(OnCheckWordsStatus != null) { OnCheckWordsStatus(); }
         }
+
+        // Just added this to help with testing, if it's still here, please remove it.
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("Going back to main menu.");
+            BackToMainMenu();
+        }
     }
 
     void Pause()
@@ -68,7 +74,10 @@ public class PauseGame : MonoBehaviour
 
         if (otherUIToDisable != null)
         {
-            otherUIToDisable.SetActive(false);
+            foreach (GameObject UI in otherUIToDisable)
+            {
+                UI.SetActive(false);
+            }
         }
     }
 
@@ -87,7 +96,10 @@ public class PauseGame : MonoBehaviour
 
         if (otherUIToDisable != null && enableOtherUI)
         {
-            otherUIToDisable.SetActive(true);
+            foreach (GameObject UI in otherUIToDisable)
+            {
+                UI.SetActive(true);
+            }
         }
     }
 

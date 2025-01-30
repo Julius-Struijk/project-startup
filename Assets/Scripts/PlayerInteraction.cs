@@ -11,7 +11,6 @@ public class PlayerInteraction : MonoBehaviour
     public Camera _camera;
     GameObject currentNPC;
     public static event Action<bool> OnCharacterTalk;
-    public Canvas _map;
 
     void Start()
     {
@@ -21,10 +20,6 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.M) && !dialogueRunner.Dialogue.IsActive)
-        {
-            _map.GetComponent<Canvas>().enabled = !_map.GetComponent<Canvas>().enabled;
-        }
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {
@@ -52,7 +47,8 @@ public class PlayerInteraction : MonoBehaviour
             else if (hitinfo.collider.gameObject.tag == "WordObject")
             {
                 hitinfo.collider.GetComponentInParent<WordDiscovery>().ShareWordIndex();
-                hitinfo.collider.GetComponentInParent<ObjectInteration>().ShowItem();
+                ObjectInteration obj = hitinfo.collider.GetComponentInParent<ObjectInteration>();
+                if(obj != null) { obj.ShowItem(); }
             }
         }
     }
