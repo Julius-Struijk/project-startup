@@ -45,12 +45,13 @@ public class GameManager : MonoBehaviour
         return _player;
     }
  
-    public void StartInteraction(Sprite image, AudioClip audioClip, string name = null)
+    public void StartInteraction(Sprite image, AudioClip audioClip,float size, string name = null)
     {
         Debug.Log("test hier " + image + " / " + audioClip + " / " + name);
 
         if (name != null) _dialogueRunner.StartDialogue(name);
         _dialogueRunner.GetComponentInChildren<Image>().sprite = image;
+        _dialogueRunner.GetComponentInChildren<Image>().GetComponent<Transform>().localScale = new Vector3(size, size, size);
         _dialogueRunner.GetComponentInChildren<AudioSource>().clip = audioClip;
         _dialogueRunner.GetComponentInChildren<AudioSource>().Play();
     }
@@ -88,7 +89,7 @@ public class GameManager : MonoBehaviour
     }
     private bool GoToNPC(string NPCName)
     {
-        StartInteraction(_NPC[NPCName].image.sprite, _NPC[NPCName].audioClip);
+        StartInteraction(_NPC[NPCName].image.sprite, _NPC[NPCName].audioClip, _NPC[NPCName].sizeScale);
         return true;
     }
 

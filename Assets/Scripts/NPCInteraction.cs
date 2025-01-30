@@ -6,7 +6,8 @@ public class NPCInteraction : MonoBehaviour
     private GameManager _gameManager;
     private WordsAdding wordAdder;
     public AudioClip audioClip;
-    public Image image;   
+    public Image image;
+    public float sizeScale;
  
     void Start()
     {
@@ -17,7 +18,7 @@ public class NPCInteraction : MonoBehaviour
     public void StartInteraction()
     {
         NextDilegeaNode();
-        _gameManager.StartInteraction(image.sprite, audioClip, this.name);
+        _gameManager.StartInteraction(image.sprite, audioClip, sizeScale, this.name);
     }
 
     static public void NextDilegeaNode()

@@ -16,24 +16,30 @@ title: Cybork
         -> Matthijs
             <<if GoToNPC("Richard")>><<endif>>
             Richard: You're not thinking he killed himself right?
+            <<jump Cybork>>
         -> Cybork
             <<if GoToNPC("Richard")>><<endif>>
             Richard: No! He'll end up putting himself in jail if we say that.
+            <<jump Cybork>>
         -> Richard
             <<if GoToNPC("Richard")>><<endif>>
             Richard: Me?! Are you going crazy?
+            <<jump Cybork>>
         -> Sherman (yourzelf)
             <<if GoToNPC("Richard")>><<endif>>
             Richard: You just chose yourself for fun didn't you?
+            <<jump Cybork>>
         -> Pieter
             <<if GoToNPC("Richard")>><<endif>>
             Richard: That’s not right. Think about the evidence we’ve gathered.
         -> Richard
             <<if GoToNPC("Richard")>><<endif>>
             Richard: That’s not right. Think about the evidence we’ve gathered.
+            <<jump Cybork>>
         -> Sjaak
             <<if GoToNPC("Richard")>><<endif>>
             Richard: That’s not right. Think about the evidence we’ve gathered.
+            <<jump Cybork>>
         -> Catharina
             Cybork: Catharina? Who?
             Cybork: Do you have like anything to prove its her. I don't know seems like a thing a detective would have.

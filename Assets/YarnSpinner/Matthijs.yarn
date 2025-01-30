@@ -16,6 +16,8 @@ title: Cat_ears
     Richard: It was a disguise. The cat ears were fake. The words are very similar in Dutch, aren't they? Here, they are called kattenoren.
     <<if AddToDictionary("Cat ears")>><<endif>>
     <<if AddToDictionary("Mole")>><<endif>>
+    <<if GoToNPC("Matthijs")>><<endif>>
+    <<jump Matthijs>>
 ===
 
 title: Knife
@@ -23,6 +25,8 @@ title: Knife
     <<if GoToNPC("Richard")>><<endif>>
     Richard: This has to be the murder weapon. A knife, huh... Dutch for mes.
     <<if AddToDictionary("Knife")>><<endif>>
+    <<if GoToNPC("Matthijs")>><<endif>>
+    <<jump Matthijs>>
 ===
 
 title: badge
@@ -30,4 +34,6 @@ title: badge
     <<if GoToNPC("Richard")>><<endif>>
     Richard: Hm.. politie.. oh its a Dutch police badge, this looks important
     <<if AddToDictionary("Police")>><<endif>>
+    <<if GoToNPC("Matthijs")>><<endif>>
+    <<jump Matthijs>>
 ===
