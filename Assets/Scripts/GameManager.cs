@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         _dialogueRunner.AddFunction<string, bool>("GoToNPC", GoToNPC);
         _dialogueRunner.AddFunction<string, bool>("AddToDictionary", AddToDictionary);
         _dialogueRunner.AddFunction<bool>("NotebookFullySolved", NotebookFullySolved);
+        _dialogueRunner.AddFunction<string, bool>("GoToDialogue", GoToDialogue);
     }    
 
     public GameObject GetPlayer()
@@ -45,12 +46,13 @@ public class GameManager : MonoBehaviour
         return _player;
     }
  
-    public void StartInteraction(Sprite image, AudioClip audioClip, string name = null)
+    public void StartInteraction(Sprite image, AudioClip audioClip,float size, string name = null)
     {
         Debug.Log("test hier " + image + " / " + audioClip + " / " + name);
 
         if (name != null) _dialogueRunner.StartDialogue(name);
         _dialogueRunner.GetComponentInChildren<Image>().sprite = image;
+        _dialogueRunner.GetComponentInChildren<Image>().GetComponent<Transform>().localScale = new Vector3(size, size, size);
         _dialogueRunner.GetComponentInChildren<AudioSource>().clip = audioClip;
         _dialogueRunner.GetComponentInChildren<AudioSource>().Play();
     }
@@ -88,7 +90,7 @@ public class GameManager : MonoBehaviour
     }
     private bool GoToNPC(string NPCName)
     {
-        StartInteraction(_NPC[NPCName].image.sprite, _NPC[NPCName].audioClip);
+        StartInteraction(_NPC[NPCName].image.sprite, _NPC[NPCName].audioClip, _NPC[NPCName].size);
         return true;
     }
 
@@ -100,5 +102,12 @@ public class GameManager : MonoBehaviour
     public void SetNotebookFullySolved()
     {
         notebookFullySolved = true;
+    }
+
+    private bool GoToDialogue(string Dialogue)
+    {
+        if (name != null) _dialogueRunner.StartDialogue(Dialogue);
+        _dialogueRunner.GetComponentInChildren<AudioSource>().Play();
+        return true;
     }
 }

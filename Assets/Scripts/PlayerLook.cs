@@ -44,7 +44,7 @@ public class PlayerLook : MonoBehaviour
         yRotation += mouseX;
         xRotation -= mouseY;
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 80f);
+        xRotation = Mathf.Clamp(xRotation, -90f, 70f);
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
         PlayerOrientation.rotation = Quaternion.Euler(xRotation, yRotation, 0);
     }

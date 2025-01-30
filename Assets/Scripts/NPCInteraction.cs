@@ -6,7 +6,8 @@ public class NPCInteraction : MonoBehaviour
     private GameManager _gameManager;
     private WordsAdding wordAdder;
     public AudioClip audioClip;
-    public Image image;   
+    public Image image;
+    public float size;
  
     void Start()
     {
